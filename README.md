@@ -16,5 +16,6 @@ pip3 install -r requirements.txt
 To run the starter:
 
 ```console
-python app/main.py
+python app/main.py OR ./run_app_dev.sh
+
 ```
