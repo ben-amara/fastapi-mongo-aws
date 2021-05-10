@@ -1,1 +1,1 @@
-release: chmod a+x app/main.py && python app/main.py
+web: uvicorn app.server.app:app --reload  --host 0.0.0.0 --port 80
