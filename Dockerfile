@@ -8,4 +8,4 @@ EXPOSE 80
 
 COPY ./app /app
 
-CMD ["uvicorn", "app.server.app:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "80"]
