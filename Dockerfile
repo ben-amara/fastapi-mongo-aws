@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt --src /usr/src/app
 
 EXPOSE 80
 
-RUN ["python", "app/main.py"]
+RUN ["python", "app/main.py", "&"]
