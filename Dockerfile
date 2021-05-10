@@ -8,4 +8,6 @@ EXPOSE 80
 
 COPY ./app /app
 
-CMD ["uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "80"]
+ENTRYPOINT ["/app/run_app_dev.sh"]
+
+RUN ["chmod", "+x", "/app/run_app_dev.sh"]
