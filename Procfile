@@ -1,2 +1,2 @@
 
-release: bash run_app_dev.sh
+release: bash ./run_app_dev.sh
