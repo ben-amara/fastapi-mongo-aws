@@ -10,7 +10,4 @@ RUN pip install -r requirements.txt --src /usr/src/app
 
 EXPOSE 80
 
-
-ENTRYPOINT ["run_app_dev.sh"]
-
-RUN ["chmod", "+x", "/usr/src/app/run_app_dev.sh"]
+RUN ["python", "app/main.py"]
