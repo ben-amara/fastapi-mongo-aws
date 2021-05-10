@@ -1,1 +1,1 @@
-release: chmod +x ./run_app_dev.sh && ./run_app_dev.sh
+release: sudo chmod +x ./run_app_dev.sh && sudo ./run_app_dev.sh
