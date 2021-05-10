@@ -1,1 +1,1 @@
-release: sudo chmod +x ./run_app_dev.sh && sudo ./run_app_dev.sh
+release: python app/main.py
