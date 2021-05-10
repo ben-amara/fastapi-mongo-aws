@@ -8,6 +8,6 @@ EXPOSE 80
 
 COPY ./app /app
 
-ENTRYPOINT ["/app/run_app_dev.sh"]
+ENTRYPOINT ["/run_app_dev.sh"]
 
-RUN ["chmod", "+x", "/app/run_app_dev.sh"]
+RUN ["chmod", "+x", "/run_app_dev.sh"]
