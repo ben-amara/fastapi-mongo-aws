@@ -1,13 +1,16 @@
 FROM python:3.8
 
-ADD requirements.txt /requirements.txt
+# set work directory
+WORKDIR /usr/src/app
 
-RUN pip install -r requirements.txt
+# copy project
+COPY . /usr/src/app
+
+RUN pip install -r requirements.txt --src /usr/src/app
 
 EXPOSE 80
 
-COPY ./app /app
 
-ENTRYPOINT ["/run_app_dev.sh"]
+ENTRYPOINT ["run_app_dev.sh"]
 
-RUN ["chmod", "+x", "/run_app_dev.sh"]
+RUN ["chmod", "+x", "/usr/src/app/run_app_dev.sh"]
