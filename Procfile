@@ -1,2 +1,1 @@
-
-release: bash ./run_app_dev.sh
+web: uvicorn server.app:app --host=0.0.0.0 --port=80
