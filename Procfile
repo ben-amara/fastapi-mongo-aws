@@ -1,1 +1,1 @@
-release: python app/main.py
+release: chmod +x app/main.py && python app/main.py
