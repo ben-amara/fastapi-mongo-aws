@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Body, Request, Depends, Header
 from fastapi.encoders import jsonable_encoder
-from server.auth.check_token import _get_authorization_token
-from server.database.database import *
-from server.models.user import *
-from server.models.shorten import *
+from app.server.auth.check_token import _get_authorization_token
+from app.server.database.database import *
+from app.server.models.user import *
+from app.server.models.shorten import *
 
 router = APIRouter()
 

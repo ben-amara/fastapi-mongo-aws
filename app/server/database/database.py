@@ -2,7 +2,7 @@ import motor.motor_asyncio
 from bson import ObjectId
 from decouple import config
 
-from server.database.database_helper import user_helper, shorten_helper
+from app.server.database.database_helper import user_helper, shorten_helper
 
 MONGO_DETAILS = config('MONGO_DETAILS')
 
