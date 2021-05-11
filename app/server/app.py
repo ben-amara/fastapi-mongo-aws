@@ -3,4 +3,4 @@ from .routes.api import router as ShortenRouter
 
 app = FastAPI()
 
-app.include_router(ShortenRouter, tags=["Shorten"], prefix="/")
+app.include_router(ShortenRouter, tags=["Shorten"], prefix="")
