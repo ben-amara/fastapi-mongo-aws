@@ -1,5 +1,5 @@
 from fastapi import Request, HTTPException, Header
-from server.database.database import *
+from app.server.database.database import *
 
 
 async def _get_authorization_token (customer_id:str  = Header('123456'), api_key:str  = Header('api_key_01'), secret:str  = Header('secret_01')):        
