@@ -9,7 +9,7 @@ class ShortenModel(BaseModel):
     long_url: str = Field(...)
     domain_name: Optional[str] = None
     input_desired_keyword: Optional[str] = None
-    time_limit: Optional[str] = None
+    time_limit: Optional[int] = None
     click_limit: Optional[int] = None
     got_rougue: Optional[int] = None
     not_child: Optional[int] = None
@@ -37,9 +37,11 @@ class ShortenModel(BaseModel):
         }
 
     @validator("long_url")
-    def validate_long_url(value: str) -> str:       
+    def validate_long_url(cls, value: str) -> str: 
+        if cls is None:
+            raise HTTPException(status_code=400, detail={"status_code":400, "error_message":"Bad Request"})    
         if value[0:8] != 'https://':
-            raise HTTPException(status_code=400, detail="long_url must contain 'https://'")          
+            raise HTTPException(status_code=405, detail={"status_code":405, "error_message":"Long url must start with https://"})                    
         return value 
 
     @validator("domain_name")
@@ -56,61 +58,68 @@ class ShortenModel(BaseModel):
             value =  "".join(sorted(millis + day_key))                
         return value 
 
+    @validator("time_limit")
+    def validate_time_limit(value: int) -> str:
+        if value is None or value == '':
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":"time_limit only accepts seconds as input"})
+        from datetime import datetime, timedelta
+        x = datetime.now() + timedelta(seconds=value)            
+        return x.strftime('%Y-%m-%d %H:%M %p')
 
     @validator("click_limit")
     def validate_click_limit(value: int) -> str:
         if not isinstance(value, int):
-            raise HTTPException(status_code=400, detail="Invalid click_limit format")
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":"Invalid click_limit format"})
         if value not in range(1, 1000000):
-            raise HTTPException(status_code=405, detail="click_limit should beetwen 1 - 1 000 000")   
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":"click limit accpets values between 1 Aand 1000000"})   
         return value 
 
     @validator("got_rougue")
     def validate_got_rougue(value: int) -> str:
         if not isinstance(value, int):
-            raise HTTPException(status_code=400, detail="Invalid got_rougue format")
+            raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":" Invalid got_rougue format"})
         if value != 1:
-            raise HTTPException(status_code=405, detail="got_rougue should beetwen equal to 1")   
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":" Link classification accepts 1 or null as input"})   
         return value                  
        
     @validator("not_child")
     def validate_not_child(value: int) -> str:
         if not isinstance(value, int):
-            raise HTTPException(status_code=400, detail="Invalid not_child format")
+            raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":"Invalid not_child format"})
         if value != 1:
-            raise HTTPException(status_code=405, detail="not_child should beetwen equal to 1")   
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":" Link classification accepts 1 or null as input"})   
         return value  
 
     @validator("not_work")
     def validate_not_work(value: int) -> str:
         if not isinstance(value, int):
-            raise HTTPException(status_code=400, detail="Invalid not_work format")
+            raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":"Invalid not_work format"})
         if value != 1:
-            raise HTTPException(status_code=405, detail="not_work should beetwen equal to 1")   
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":" Link classification accepts 1 or null as input"})   
         return value  
 
     @validator("contains_politics")
     def validate_contains_politics(value: int) -> str:
         if not isinstance(value, int):
-            raise HTTPException(status_code=400, detail="Invalid contains_politics format")
+            raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":" Invalid contains_politics format"})
         if value != 1:
-            raise HTTPException(status_code=405, detail="contains_politics should beetwen equal to 1")   
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":" Link classification accepts 1 or null as input"})   
         return value   
 
     @validator("contains_promotions")
     def validate_contains_promotions(value: int) -> str:
         if not isinstance(value, int):
-            raise HTTPException(status_code=400, detail="Invalid contains_promotions format")
+            raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":" Invalid contains_promotions format"})
         if value != 1:
-            raise HTTPException(status_code=405, detail="contains_promotions should beetwen equal to 1")   
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":" Link classification accepts 1 or null as input"})   
         return value   
 
     @validator("contains_violence")
     def validate_contains_violence(value: int) -> int:
         if not isinstance(value, int):
-            raise HTTPException(status_code=400, detail="Invalid contains_violence format")
+            raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":"Invalid contains_violence format"})
         if value != 1:
-            raise HTTPException(status_code=405, detail="contains_violence should beetwen equal to 1")   
+            raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":" Link classification accepts 1 or null as input"})   
         return value
 
 

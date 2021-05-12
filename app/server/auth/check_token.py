@@ -3,21 +3,16 @@ from app.server.database.database import *
 
 
 async def _get_authorization_token (customer_id:str  = Header(...), api_key:str  = Header(...), secret:str  = Header(...)):        
-    if customer_id is None:
+    if customer_id is None or api_key is None or secret is None:
         print("Failed here.")
-        raise HTTPException(status_code=401, detail="The request is missing a valid customer_id")
+        raise HTTPException(status_code=400, detail={"status_code":400, "error_message":"Bad Request"})
 
-    if api_key is None:
-        print("Failed here api_key")
-        raise HTTPException(status_code=401, detail="The request is missing a valid api_key")  
-
-    if secret is None:
-        print("Failed here secret")
-        raise HTTPException(status_code=401, detail="The request is missing a valid secret")
+    if customer_id == '' or api_key == '' or secret == '':        
+        raise HTTPException(status_code=401, detail={"status_code":401, "error_message":"Invalid Credentials"})  
 
     v = await verify_token(customer_id, api_key, secret)
     if v is None:
-        raise HTTPException(status_code=401, detail="User credentials are not valid")
+        raise HTTPException(status_code=401, detail={"status_code":401, "error_message":"Invalid Credentials"})
     else:
         return v
 
