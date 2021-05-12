@@ -3,14 +3,15 @@ def user_helper(user) -> dict:
         'id': str(user['_id']),     
         'customer_id': user['customer_id'],
         'api_key': user['api_key'],
-        'secret': user['secret']
+        'secret': user['secret'],
+        'custom_domains': user['custom_domains'] if 'custom_domains' in user else []
     }
 
 
 def shorten_helper(shorten) -> dict:
     return {
         'id': str(shorten['_id']),
-        'user_collect_id': shorten['user_collect_id'],
+        'customer_id': shorten['customer_id'],
         'domain_name': shorten['domain_name'],
         'long_url': shorten['long_url'],
         'short_url': 'https://' + shorten['domain_name'] + '/' + shorten['input_desired_keyword'] if shorten['domain_name'] and shorten['input_desired_keyword'] else None  ,

@@ -19,7 +19,7 @@ async def _get_authorization_token (customer_id:str  = Header(...), api_key:str 
     if v is None:
         raise HTTPException(status_code=401, detail="User credentials are not valid")
     else:
-        return v['id']
+        return v
 
 async def verify_token(customer_id:str, api_key:str, secret:str) -> bool:
     re = await retrieve_user(customer_id, api_key, secret)

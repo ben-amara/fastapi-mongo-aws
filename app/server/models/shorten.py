@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 from typing import Optional
 from fastapi import HTTPException
 from pydantic import BaseModel, Field, validator
+from app.server.core.utils import _get_milliseconds, get_day_key, get_domain_random
 
 
 class ShortenModel(BaseModel):
@@ -36,9 +37,23 @@ class ShortenModel(BaseModel):
         }
 
     @validator("long_url")
-    def validate_long_url(value: int) -> str:
+    def validate_long_url(value: str) -> str:       
         if value[0:8] != 'https://':
-            raise HTTPException(status_code=400, detail="long_url must contain 'https://'")  
+            raise HTTPException(status_code=400, detail="long_url must contain 'https://'")          
+        return value 
+
+    @validator("domain_name")
+    def validate_domain_name(value: str) -> str:
+        if value is None or value == '':
+            value = get_domain_random()                
+        return value 
+
+    @validator("input_desired_keyword")
+    def validate_input_desired_keyword(value: str) -> str:
+        if value is None or value == '':
+            day_key = get_day_key(datetime.now().timetuple().tm_yday)
+            millis = _get_milliseconds()
+            value =  "".join(sorted(millis + day_key))                
         return value 
 
 
@@ -104,7 +119,7 @@ def ResponseModel(data):
     return  {
                 'status_code':200,
                 'error_message':None,
-                'user_collect_id': data['user_collect_id'],
+                'customer_id': data['customer_id'],
                 'request_id': data['id'],
                 'created_at': data['created_at'],
                 'long_url': data['long_url'],

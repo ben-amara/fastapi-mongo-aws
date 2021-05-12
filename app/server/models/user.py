@@ -7,3 +7,4 @@ class UserModel(BaseModel):
     customer_id: str = Field(...)
     api_key: str = Field(...)
     secret: str = Field(...)
+    custom_domains: list = Field(...)

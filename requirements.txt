@@ -8,3 +8,4 @@ email-validator
 PyJWT==1.7.1
 passlib
 bcrypt
+functools
