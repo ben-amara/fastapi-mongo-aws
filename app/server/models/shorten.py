@@ -37,7 +37,7 @@ class ShortenModel(BaseModel):
 
     @validator("long_url")
     def validate_long_url(value: int) -> str:
-        if value[0:8] == 'https://':
+        if value[0:8] != 'https://':
             raise HTTPException(status_code=400, detail="long_url must contain 'https://'")  
         return value 
 
