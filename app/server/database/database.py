@@ -8,7 +8,7 @@ MONGO_DETAILS = config('MONGO_DETAILS')
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 
-database = client.shorten
+database = client.links
 
 user_collection = database.get_collection('user_list')
 shorten_collection = database.get_collection('short')
