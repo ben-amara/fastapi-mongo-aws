@@ -42,8 +42,8 @@ async def add_shorten(shorten_data: dict, user_collect: str = None) -> dict:
 
 
 
-async def check_exist_keyword(input_desired_keyword: str):
-    short = await shorten_collection.find_one({"input_desired_keyword": input_desired_keyword})
+async def check_exist_keyword(input_desired_keyword: str, domain_name: str):
+    short = await shorten_collection.find_one({"input_desired_keyword": input_desired_keyword, "domain_name": domain_name})
     if short is not None:
         return shorten_helper(short)
     else:
