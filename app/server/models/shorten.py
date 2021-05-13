@@ -11,7 +11,7 @@ class ShortenModel(BaseModel):
     input_desired_keyword: Optional[str] = None
     time_limit: Optional[int] = None
     click_limit: Optional[int] = None
-    got_rougue: Optional[int] = None
+    go_rougue: Optional[int] = None
     not_child: Optional[int] = None
     not_work: Optional[int] = None
     contains_politics: Optional[int] = None
@@ -27,7 +27,7 @@ class ShortenModel(BaseModel):
                 'input_desired_keyword': 'poperver',
                 'time_limit': None,
                 'click_limit': None,
-                'got_rougue':  None,
+                'go_rougue':  None,
                 'not_child': None,
                 'not_work': None,
                 'contains_politics': None,
@@ -74,10 +74,10 @@ class ShortenModel(BaseModel):
             raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":"click limit accpets values between 1 Aand 1000000"})   
         return value 
 
-    @validator("got_rougue")
-    def validate_got_rougue(value: int) -> str:
+    @validator("go_rougue")
+    def validate_go_rougue(value: int) -> str:
         if not isinstance(value, int):
-            raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":" Invalid got_rougue format"})
+            raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":" Invalid go_rougue format"})
         if value != 1:
             raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":" Link classification accepts 1 or null as input"})   
         return value                  
@@ -142,7 +142,7 @@ def ResponseModel(data):
                 'contains_politics': data['contains_politics'] if 'contains_politics' in data else None,
                 'contains_promotions': data['contains_promotions'] if 'contains_promotions' in data else None,
                 'contains_violence': data['contains_violence'] if 'contains_violence' in data else None,
-                'got_rougue': data['got_rougue'] if 'got_rougue' in data else None
+                'go_rougue': data['go_rougue'] if 'go_rougue' in data else None
                 }
 
 

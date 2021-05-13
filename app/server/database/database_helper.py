@@ -18,7 +18,7 @@ def shorten_helper(shorten) -> dict:
         'input_desired_keyword': shorten['input_desired_keyword'],
         'time_limit': shorten['time_limit'] if shorten['time_limit'] else None,
         'click_limit': shorten['click_limit'] if shorten['click_limit'] else None,
-        'got_rougue':  shorten['got_rougue'] if shorten['got_rougue'] else None,
+        'go_rougue':  shorten['go_rougue'] if shorten['go_rougue'] else None,
         'not_child': shorten['not_child'] if shorten['not_child'] else None,
         'not_work': shorten['not_work'] if shorten['not_work'] else None,
         'contains_politics': shorten['contains_politics'] if shorten['contains_politics'] else None,
