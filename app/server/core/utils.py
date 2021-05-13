@@ -34,7 +34,9 @@ def check_domain_name(domaine = None, user_obj: dict = None):
         if domaine in DOMAIN_LIST:
             return domaine
         if 'custom_domains' in user_obj and domaine not in user_obj['custom_domains']:            
-            raise HTTPException(status_code=405, detail={"status_code":405, "error_message":"Domain not found"})       
+            raise HTTPException(status_code=405, detail={"status_code":405, "error_message":"Domain not found"})
+        else:
+            return  domaine      
     else:
         return get_domain_random()
     

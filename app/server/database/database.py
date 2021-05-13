@@ -23,7 +23,7 @@ async def retrieve_user(customer_id: str, api_key: str, secret: str):
 
 
 async def add_shorten(shorten_data: dict, user_collect: str = None) -> dict:
-    shorten_data['customer_id'] = user_collect['customer_id']
+    shorten_data['customer_id'] = user_collect['customer_id']   
     shorten_data['domain_name'] = check_domain_name(shorten_data['domain_name'], user_collect)
     if 'go_rougue' in shorten_data and shorten_data['go_rougue'] == 1:
         shorten_data['short_url'] = shorten_data['domain_name'] + '/' + get_url_extension()
