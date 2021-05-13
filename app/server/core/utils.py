@@ -69,3 +69,6 @@ def get_url_extension():
     url_extention="".join(random.sample(url_extention,len(url_extention)))
 
     return url_extention      
+
+
+    

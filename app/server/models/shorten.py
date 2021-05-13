@@ -60,7 +60,7 @@ class ShortenModel(BaseModel):
 
     @validator("time_limit")
     def validate_time_limit(value: int) -> str:
-        if value is None or value == '':
+        if value is None or value == '' or not isinstance(value, int):
             raise HTTPException(status_code=405, detail={"staus_code":405, "error_message":"time_limit only accepts seconds as input"})
         from datetime import datetime, timedelta
         x = datetime.now() + timedelta(seconds=value)            
