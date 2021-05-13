@@ -32,7 +32,7 @@ async def add_shorten(shorten_data: dict, user_collect: str = None) -> dict:
         shorten_data['short_url'] = shorten_data['domain_name'] + '/' + check_input_desired_keyword(shorten_data['input_desired_keyword'])
 
     if 'input_desired_keyword' in shorten_data and shorten_data['input_desired_keyword']:
-        re = await check_exist_keyword(shorten_data['input_desired_keyword'])
+        re = await check_exist_keyword(shorten_data['input_desired_keyword'], shorten_data['domain_name'])
         if re:
             raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":" Someone has stolen the keyword"})
     shorten = await shorten_collection.insert_one(shorten_data)
