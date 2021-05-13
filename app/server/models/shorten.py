@@ -142,7 +142,7 @@ def ResponseModel(data):
                 'contains_politics': data['contains_politics'] if 'contains_politics' in data else None,
                 'contains_promotions': data['contains_promotions'] if 'contains_promotions' in data else None,
                 'contains_violence': data['contains_violence'] if 'contains_violence' in data else None,
-                'go_rougue': data['go_rougue'] if 'go_rougue' in data else None
+                'got_rougue': data['got_rougue'] if 'got_rougue' in data else None
                 }
 
 
