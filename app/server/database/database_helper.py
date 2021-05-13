@@ -14,7 +14,7 @@ def shorten_helper(shorten) -> dict:
         'customer_id': shorten['customer_id'],
         'domain_name': shorten['domain_name'],
         'long_url': shorten['long_url'],
-        'short_url': 'https://' + shorten['short_url'],
+        'mini_link': 'https://' + shorten['mini_link'],
         'input_desired_keyword': shorten['input_desired_keyword'],
         'time_limit': shorten['time_limit'] if shorten['time_limit'] else None,
         'click_limit': shorten['click_limit'] if shorten['click_limit'] else None,

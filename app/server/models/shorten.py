@@ -132,7 +132,7 @@ def ResponseModel(data):
                 'request_id': data['id'],
                 'created_at': data['created_at'],
                 'long_url': data['long_url'],
-                'short_url': data['short_url'] if 'short_url' in data else None ,
+                'short_url': data['mini_link'] if 'mini_link' in data else None ,
                 'domain_name': data['domain_name'] if 'domain_name' in  data else None,
                 'input_desired_keyword': data['input_desired_keyword'] if 'input_desired_keyword' in data else None ,
                 'time_limit': data['time_limit'] if 'time_limit' in data else None ,

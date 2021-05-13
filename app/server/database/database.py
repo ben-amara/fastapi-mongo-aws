@@ -1,3 +1,4 @@
+import time
 import motor.motor_asyncio
 from decouple import config
 from fastapi import HTTPException
@@ -35,6 +36,9 @@ async def add_shorten(shorten_data: dict, user_collect: str = None) -> dict:
         re = await check_exist_keyword(shorten_data['input_desired_keyword'], shorten_data['domain_name'])
         if re:
             raise HTTPException(status_code=400, detail={"staus_code":405, "error_message":" Someone has stolen the keyword"})
+    shorten_data['mini_link'] = shorten_data['short_url']    
+    del shorten_data['short_url']
+    shorten_data['epoch_elapsed'] = time.time()
     shorten = await shorten_collection.insert_one(shorten_data)
     new_shorten = await shorten_collection.find_one({"_id": shorten.inserted_id})
     return shorten_helper(new_shorten)      
